@@ -12,19 +12,16 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useHistory } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+  
+} from "react-router-dom";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
-
+let h=useHistory();
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -65,10 +62,10 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="CNIC"
+            label="Enter CNIC Number"
+            name="CNIC"
+            autoComplete="CNIC"
             autoFocus
           />
           <TextField
@@ -86,7 +83,9 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
+          <Button onClick={
+            ()=>{h.push("/areavote");}
+        }
             type="submit"
             fullWidth
             variant="contained"
@@ -97,20 +96,20 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link  href="/forgetpas" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href="/Signup" variant="body2">
+                {"Don't have an account? Register"}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
       <Box mt={8}>
-        <Copyright />
+      
       </Box>
     </Container>
   );

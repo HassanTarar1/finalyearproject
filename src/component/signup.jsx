@@ -13,18 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { useHistory } from 'react-router-dom';
+import {BrowserRouter, withRouter} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,8 +38,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-
+let h=useHistory();
   return (
+    <BrowserRouter>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -63,7 +54,7 @@ export default function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="fname"
+                
                 name="firstName"
                 variant="outlined"
                 required
@@ -81,7 +72,7 @@ export default function SignUp() {
                 id="lastName"
                 label="Last Name"
                 name="lastName"
-                autoComplete="lname"
+                
               />
             </Grid>
             <Grid item xs={12}>
@@ -89,10 +80,22 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                id="Mobile_number"
+                label="Enter your Mobile number"
+                name="Moblie number"
+              
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+    
+                variant="outlined"
+                required
+                fullWidth
                 id="CNIC"
                 label="Enter your CNIC number"
                 name="CNIC"
-                autoComplete="CNIC number"
+              
               />
             </Grid>
             <Grid item xs={12}>
@@ -104,7 +107,7 @@ export default function SignUp() {
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+            
               />
             </Grid>
             <Grid item xs={12}>
@@ -125,7 +128,8 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="#" onClick={
+                ()=>{h.push("/Signin");}} variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
@@ -136,5 +140,6 @@ export default function SignUp() {
         
       </Box>
     </Container>
+    </BrowserRouter>
   );
 }
